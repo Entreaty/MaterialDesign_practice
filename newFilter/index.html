@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>AngularJS: ng-animate example</title>
+    
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <style>
+      li{list-style: none; }
+body{margin: 50px; background-color: #333; color: #ccc; overflow: hidden;}
+h3{color: #fff;}
+.animate-enter, .animate-leave {
+transition: 500ms ease-in all;
+position: relative;
+display: block;
+} 
+.animate-enter.animate-enter-active, .animate-leave {
+left: 0;
+}
+.animate-leave.animate-leave-active, .animate-enter {
+left: 500px;
+}
+    </style>
+
+    
+        <script src="js/prefixfree.min.js"></script>
+
+    
+  </head>
+
+  <body>
+
+    <body ng-app>
+<h3>Songs on The Beatles - Sgt. Pepper's Lonely Hearts Club Band (1967)</h3>
+<div ng-controller="myCtrl">
+<input type="text" ng-model="search">
+<button type="submit">Filter</button>
+<ul>
+<li ng-animate="'animate'" ng-repeat="song in songs | filter:search">
+{{song}}
+</li> 
+</ul>
+</div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>
