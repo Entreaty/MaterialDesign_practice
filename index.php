@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./MDL/material.min.css">
     <script src="./MDL/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.red-orange.min.css" />
-    <!--    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.blue_grey-indigo.min.css" />-->
+    <!--    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.red-orange.min.css" />-->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.blue_grey-indigo.min.css" />
     <link href="http://allfont.ru/allfont.css?fonts=roboto-condensed-regular" rel="stylesheet" type="text/css" />
     <!--AngularJS Filter-->
     <link rel="stylesheet" href="./newFilter/css/normalize.css">
@@ -50,9 +50,9 @@
 </head>
 <body ng-app>
 
-<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button mdl-layout--fixed-header">
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header mdl-layout__header--waterfall">
-        <!-- Top row, always visible -->
         <div class="mdl-layout__header-row">
             <!-- Title -->
             <img style="max-width:60pt;border-radius:25%"
@@ -67,7 +67,6 @@
 
             <div class="mdl-layout-spacer"></div>
 
-            <!--            <span class="mdl-layout-title">Notifier</span>-->
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
                   mdl-textfield--floating-label mdl-textfield--align-right">
@@ -83,57 +82,55 @@
                     Фильтр
                 </div>
             </div>
-
-            <!--            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-->
-            <!--                Sign in-->
-            <!--            </button>-->
         </div>
-        <!--         Bottom row, not visible on scroll -->
-        <div class="mdl-layout__header-row">
-            <!--             Navigation -->
-            <nav class="waterfall-demo-header-nav mdl-navigation ">
-                <a class="mdl-navigation__link" href="">Фильмы</a>
-                <a class="mdl-navigation__link" href="">Сериалы</a>
-                <a class="mdl-navigation__link" href="">Музыка</a>
-                <a class="mdl-navigation__link" href="">Мультфильмы</a>
-                <a class="mdl-navigation__link" href="">Аниме</a>
-                <a class="mdl-navigation__link" href="">Игры</a>
-            </nav>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-films" class="mdl-layout__tab is-active">Фильмы</a>
+            <a href="#scroll-tab-serials" class="mdl-layout__tab">Сериалы</a>
+            <a href="#scroll-tab-music" class="mdl-layout__tab">Музыка</a>
+            <a href="#scroll-tab-cartoons" class="mdl-layout__tab">Мультфильмы</a>
+            <a href="#scroll-tab-anime" class="mdl-layout__tab">Аниме</a>
+            <a href="#scroll-tab-games" class="mdl-layout__tab">Игры</a>
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Категории</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Фильмы</a>
-            <a class="mdl-navigation__link" href="">Сериалы</a>
-            <a class="mdl-navigation__link" href="">Музыка</a>
-            <a class="mdl-navigation__link" href="">Мультфильмы</a>
-            <a class="mdl-navigation__link" href="">Аниме</a>
-            <a class="mdl-navigation__link" href="">Игры</a>
-        </nav>
+        <span class="mdl-layout-title">Чебурда</span>
     </div>
-    <main class="mdl-layout__content">
-        <div class="page-content" ng-controller="myCtrl">
-
-            <!-- Your content goes here -->
-
-            <div class="demo-grid-3 mdl-grid">
-                <div ng-animate="'animate'"
-                     ng-repeat="result in data | filter:search"
-                     align="center"
-                     class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <a href="{{result.picture_big}}">
-                                <img src="{{result.picture}}">
-                                <a style="text-decoration: none;" href="">
-                                    <h5>
-                                        {{result.title}}
-                                    </h5>
-                                </a>
+    <main class="mdl-layout__content" ng-controller="myCtrl">
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-films">
+            <div class="page-content">
+                <div class="demo-grid-3 mdl-grid">
+                    <div ng-animate="'animate'"
+                         ng-repeat="result in data | filter:search"
+                         align="center"
+                         class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                        <a href="{{result.picture_big}}">
+                            <img src="{{result.picture}}">
+                            <a style="text-decoration: none;" href="">
+                                <h5>
+                                    {{result.title}}
+                                </h5>
                             </a>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-serials">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-music">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-cartoons">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-anime">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-games">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
     </main>
 </div>
 
