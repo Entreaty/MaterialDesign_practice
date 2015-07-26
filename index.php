@@ -60,7 +60,7 @@
 
             <form method="get" style="padding-left:35pt">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-                    <input class="mdl-textfield__input" name="searchRequest" type="text" id="sample3" />
+                    <input class="mdl-textfield__input" name="searRequest" type="text" id="sample3" />
                     <label class="mdl-textfield__label" for="sample3" style="color:#f5f5f5">Введите название или категорию..</label>
                 </div>
             </form>
