@@ -21,6 +21,7 @@
     <style>
         /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
         @import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+
         .loading-bro {
             top: 25%;
             left: 45%;
@@ -29,6 +30,7 @@
             width: 150px;
             position: fixed;
         }
+
         .loading-bro > h1 {
             width: 75%;
             text-align: center;
@@ -42,6 +44,7 @@
             width: 75%;
             animation: loading 3s linear infinite;
         }
+
         #load #loading-inner {
             stroke-dashoffset: 0;
             stroke-dasharray: 300;
@@ -61,6 +64,7 @@
                 transform: rotate(360deg);
             }
         }
+
         @keyframes loading-circle {
             0% {
                 stroke-dashoffset: 0;
@@ -72,13 +76,29 @@
 
     </style>
     <style>
-        .unvisible{
+        a{
+            text-decoration: none;
+        }
+        .unvisible {
             display: none;
         }
+
+        .testPoster:hover {
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .14), 0 5px 3px -4px rgba(0, 0, 0, .2), 0 3px 7px 0 rgba(0, 0, 0, .12);
+        }
+
+        .testTitle:hover {
+        }
+.testCell:hover{
+    cursor: pointer;
+    color: red;
+    transition-timing-function: ease-out;
+    transition-duration: 250ms;
+}
     </style>
 
 </head>
-<body onload="loadPage()" ng-app>
+<body style="background-color: lightgray" onload="loadPage()" id="body">
 
 <div id="loading" class="loading-bro">
     <h1>Loading</h1>
@@ -88,11 +108,9 @@
 </div>
 
 <!-- Simple header with scrollable tabs. -->
-<div     id="output" class="unvisible mdl-layout mdl-js-layout ">
+<div  id="output" class=" mdl-layout mdl-js-layout mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <!--Верхнее меню -->
-    <div  class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-    <div
-        style="
+    <div style="
         position:fixed;
     background-color: #0091ea;
     display: -webkit-box;
@@ -120,8 +138,9 @@
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    width: 90%;
-    margin-left: 5%;
+    /*min-width: 90%;*/
+    /*margin-right: 17px;*/
+    /*margin-left: half-width;*/
     padding: 15px;
     border: none;
     /*min-height: 50px;*/
@@ -147,14 +166,14 @@
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center"
-        >
+    align-items: center" id="menu">
         <div class="mdl-layout-spacer"></div>
         <!-- Поиск в обычном режиме -->
         <form action="#" method="get">
-            <div class="mdl-textfield mdl-js-textfield ">
-                <input ng-model="search" class="mdl-textfield__input" name="searchRequest" type="text" id="sample3"/><label
-                    class="mdl-textfield__label" for="sample3" >Введите название или
+            <div class="mdl-textfield mdl-js-textfield mdl-layout--large-screen-only">
+                <input ng-model="search" class="mdl-textfield__input" name="searchRequest" type="text"
+                       id="sample3"/><label
+                    class="mdl-textfield__label" for="sample3">Введите название или
                     категорию...
                     <button style="visibility: hidden" type="submit" id="sample4"></button>
                 </label>
@@ -162,8 +181,8 @@
         </form>
 
         <!-- Spaceer -->
-        <div class="mdl-layout-spacer"></div>
-        <div  class="mdl-tabs__tab-bar">
+        <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
+        <div class="mdl-tabs__tab-bar mdl-layout--large-screen-only">
             <a href="#starks-panel" class="mdl-tabs__tab is-active">Фильмы</a>
             <a href="#lannisters-panel" class="mdl-tabs__tab">Сериалы</a>
             <a href="#targaryens-panel" class="mdl-tabs__tab">Игры</a>
@@ -171,50 +190,131 @@
             <a href="#targaryens-panel" class="mdl-tabs__tab">Аниме</a>
             <a href="#targaryens-panel" class="mdl-tabs__tab">Мультфильмы</a>
         </div>
-        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
     </div>
 
+    <div style="background-color: white; padding:100px 0;width:80%;margin-left:10%" id="content" class="unvisible">
 
 
-
-
-        <div style="padding:100px 0;width:80%;margin-left:10%" class="mdl-tabs__panel is-active" id="starks-panel" ng-controller="myCtrl">
-            <!-- Your content goes here -->
-            <div id="output2" class="demo-grid-ruller mdl-grid">
-                <div ng-animate="'animate'"
-                     ng-repeat="result in data | filter:search"
-                     align="center"
-                     class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-<!--                                                                        <img style="width: 150px;height: 200px" src="{{result.posterUrl}}">-->
-                    <a style="text-align: start; text-decoration: none;" href="Card.php?title={{result.title}}">
-                        <h5>
-                            {{result.title}}
-                        </h5>
-                        <h5></h5>
-                    </a>
-                </div>
-            </div>
-
+        <div class="mdl-tabs__panel is-active" id="starks-panel">
+            <div class="films popupBtn demo-grid-ruller mdl-grid"></div>
         </div>
+
+
         <div class="mdl-tabs__panel" id="lannisters-panel">
-            <ul>
-                <li>Tywin</li>
-                <li>Cersei</li>
-                <li>Jamie</li>
-                <li>Tyrion</li>
-            </ul>
+            <button id="see">XXX</button>
+            <div class="films popupBtn demo-grid-ruller mdl-grid"></div>
         </div>
+
+
         <div class="mdl-tabs__panel" id="targaryens-panel">
             <ul>
                 <li>Viserys</li>
                 <li>Daenerys</li>
             </ul>
         </div>
+
+
     </div>
-    <!-- mainContent-->
+
 
 </div>
 
+<style>
+    .overlay{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 997;
+        /*cursor: pointer;*/
+    }
+    .popupShow{
+        display: none;
+        position: absolute;
+        z-index: 999 !important;
+        /*width: 75%;*/
+        min-height: 800px;
+        /*margin: 5% 12.5%;*/
+        background: #FFF;
+        cursor: default;
+    }
+    .popupCloseBtn{
+        /*left:85%;*/
+        /*bottom:90%;*/
+    }
+    .fixed{
+        overflow: hidden;
+        position: fixed;
+        /*display: none;*/
+    }
+    .marg{
+        margin-left: 17px;
+        margin-right: 17px;
+    }
+</style>
+
+
+
+<section class="overlay" id="shirm"></section>
+
+<div class="popupShow" id="popup">
+    <button  class="popupCloseBtn" >X</button>
+
+
+    <span id="popupCategory">Фильмы, </span><span id="popupYear"></span>
+
+    <h1 class="popupTitle"></h1>
+
+    <span id="popupGenre"></span>
+
+    <div class="demo-grid-ruler mdl-grid">
+        <img style="height: auto;width:auto; max-height:700px;max-width:400px;margin-left: -8px"
+             class="popupPoster mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="">
+            <p>
+                <i>Оригинальное название: </i>
+                <i class="popupTitle"></i>
+            </p>
+
+            <p>
+                <i>Страна: </i>
+                <i id="popupCountry"></i>
+            </p>
+
+            <p>
+                <i>Режиссер: </i>
+                <i id="popupProducer"></i>
+            </p>
+
+            <p>
+                <i>Актеры: </i>
+                <i id="popupActors"></i>
+            </p>
+
+            <p>
+                <i>Время: </i>
+                <i id="popupLength"></i>
+            </p>
+
+            <p>
+                <i>Качество: </i>
+                <i id="popupQuality"></i>
+            </p>
+        </div>
+
+        <div>
+            <p>
+                <i id="popupSubject"></i>
+            </p>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
