@@ -42,8 +42,63 @@
 <!-- Simple header with scrollable tabs. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <!--Верхнее меню -->
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
+    <header style="
+        position:fixed;
+    background-color: #0091ea;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /*-webkit-box-orient: vertical;*/
+    /*-webkit-box-direction: normal;*/
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    /*-webkit-flex-direction: column;*/
+    /*-ms-flex-direction: column;*/
+    /*flex-direction: column;*/
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 80%;
+    margin-left: 10%;
+    padding: 15px;
+    border: none;
+    /*min-height: 50px;*/
+    max-height: 1000px;
+    height: 48px;
+    z-index: 3;
+    /*background-color: rgb(244, 67, 54);*/
+    color: rgb(255, 255, 255);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    -webkit-transition-property: max-height, box-shadow;
+    transition-property: max-height, box-shadow;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center" class="mdl-layout__header">
+        <div  class="mdl-layout__header-row">
             <!-- Поиск в обычном режиме -->
             <form action="#" method="get"><div style="margin-top: 15pt" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo mdl-layout--large-screen-only"><input class="mdl-textfield__input" name="searchRequest" type="text" id="sample3"/><label class="mdl-textfield__label" for="sample3" style="color:#f5f5f5">Введите название или категорию... </label><button style="visibility: hidden" type="submit" id="sample4"></button></div></form><label class="mdl-button mdl-js-button mdl-button--icon mdl-layout--large-screen-only" for="sample4"><i class="material-icons">search</i></label>
             <!-- Navigation. We hide it in small screens. -->
@@ -75,7 +130,7 @@
 </div>
 
 <?php
-$request = "http://78.140.13.90:8080/api/feed";
+$request = "http://78.140.13.90:8080/api/feed?limit=1&offset=0";
 $json = file_get_contents($request);
 $obj = json_decode($json, true);      // Получили массив с фильмами
 ?>
@@ -88,6 +143,7 @@ $obj = json_decode($json, true);      // Получили массив с фил
 
 <div class="wrapper">
     <?php
+
     $title = $_GET['title'];
     foreach ($obj as $ff) {
         if(array_search($title, $ff, true)) {
